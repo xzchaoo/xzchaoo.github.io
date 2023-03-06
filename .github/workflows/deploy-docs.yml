@@ -35,7 +35,7 @@ jobs:
     - name: Build docs
       run: mdbook build ./docs/en && mdbook build ./docs/zh
     - name: Build 2
-      run: mkdir ./tmp && mv ./docs/en/book ./tmp/en && mv ./docs/zh/book ./tmp/zh
+      run: mv ./docs/en/book ./docs/agg/en && mv ./docs/zh/book ./docs/agg/zh
 #    - name: Deploy docs
 #      uses: peaceiris/actions-gh-pages@v3
 #      if: ${{ github.ref == 'refs/heads/main' }}
@@ -45,7 +45,7 @@ jobs:
     - name: Upload docs
       uses: actions/upload-pages-artifact@v1
       with:
-        path: ./tmp
+        path: ./docs/agg
   deploy-docs:
     environment:
       name: github-pages
