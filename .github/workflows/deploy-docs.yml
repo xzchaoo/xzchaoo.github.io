@@ -36,7 +36,7 @@ jobs:
       run: mdbook build ./docs/en
     - name: Build 2
       run: mkdir ./tmp && mv ./docs/en/book ./tmp/en
-    - name: Deploy docs
+#    - name: Deploy docs
 #      uses: peaceiris/actions-gh-pages@v3
 #      if: ${{ github.ref == 'refs/heads/main' }}
 #      with:
