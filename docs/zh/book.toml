@@ -1,0 +1,8 @@
+[book]
+title = "Holoinsight Documentations"
+authors = ["xzchaoo", "foo", "bar"]
+language = "en"
+src = "src"
+
+[build]
+create-missing = false
