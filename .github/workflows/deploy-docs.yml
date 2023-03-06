@@ -24,7 +24,7 @@ jobs:
   build-docs:
     runs-on: ubuntu-latest
     concurrency:
-      group: ${{ github.workflow }}-${{ github.ref }}
+      group: docs
     steps:
     - uses: actions/checkout@v3
     # https://github.com/marketplace/actions/mdbook-action
