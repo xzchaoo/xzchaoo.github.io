@@ -9,7 +9,6 @@
 
         <!-- Custom HTML head -->
         
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff" />
@@ -34,6 +33,7 @@
 
     </head>
     <body>
+    <div id="body-container">
         <!-- Provide site root to javascript -->
         <script>
             var path_to_root = "";
@@ -71,10 +71,12 @@
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
             var html = document.querySelector('html');
-            var sidebar = 'hidden';
+            var sidebar = null;
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
+            } else {
+                sidebar = 'hidden';
             }
             html.classList.remove('sidebar-visible');
             html.classList.add("sidebar-" + sidebar);
@@ -100,7 +102,7 @@
                             <i class="fa fa-paint-brush"></i>
                         </button>
                         <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
                             <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
@@ -114,13 +116,6 @@
                     <h1 class="menu-title">Holoinsight Documentations</h1>
 
                     <div class="right-buttons">
-                        <button id="lang-toggle" class="icon-button" type="button" title="Change language" aria-label="Change language" aria-haspopup="true" aria-expanded="false" aria-controls="lang-list">
-                            <i class="fa fa-globe"></i>
-                        </button>
-                        <ul id="lang-list" class="theme-popup" style="left: auto;" aria-label="Languages" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="en">English</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="cn">中文</button></li>
-                        </ul>
                         <a href="print.html" title="Print this book" aria-label="Print this book">
                             <i id="print-button" class="fa fa-print"></i>
                         </a>
@@ -178,74 +173,17 @@
         </script>
 
 
-        <script src="elasticlunr.min.js" charset="utf-8"></script>
-        <script src="mark.min.js" charset="utf-8"></script>
-        <script src="searcher.js" charset="utf-8"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard.min.js" charset="utf-8"></script>
-        <script src="highlight.js" charset="utf-8"></script>
-        <script src="book.js" charset="utf-8"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 
 
-        <script type="text/javascript">
-        var langs = [
-            'en',
-            'cn'
-        ];
-
-        (function langs() {
-            var html = document.querySelector('html');
-            var langToggleButton = document.getElementById('lang-toggle');
-            var langPopup = document.getElementById('lang-list');
-
-            function showLangs() {
-                langPopup.style.display = 'block';
-                langToggleButton.setAttribute('aria-expanded', true);
-            }
-
-            function hideLangs() {
-                langPopup.style.display = 'none';
-                langToggleButton.setAttribute('aria-expanded', false);
-                langToggleButton.focus();
-            }
-
-            langToggleButton.addEventListener('click', function () {
-                if (langPopup.style.display === 'block') {
-                    hideLangs();
-                } else {
-                    showLangs();
-                }
-            });
-
-            langPopup.addEventListener('click', function (e) {
-                var lang = e.target.id || e.target.parentElement.id;
-                window.location.pathname = window.location.pathname
-                    .split('/')
-                    .map((s, idx) => {
-                        return idx == 2 ? lang : s;
-                    })
-                    .join('/');
-            });
-
-            langPopup.addEventListener('focusout', function(e) {
-                // e.relatedTarget is null in Safari and Firefox on macOS (see workaround below)
-                if (!!e.relatedTarget && !langToggleButton.contains(e.relatedTarget) && !langPopup.contains(e.relatedTarget)) {
-                    hideLangs();
-                }
-            });
-
-            // Should not be needed, but it works around an issue on macOS & iOS: https://github.com/rust-lang-nursery/mdBook/issues/628
-            document.addEventListener('click', function(e) {
-                if (langPopup.style.display === 'block' && !langToggleButton.contains(e.target) && !langPopup.contains(e.target)) {
-                    hideLangs();
-                }
-            });
-
-        })();
-        </script>
-
-
+    </div>
     </body>
 </html>
