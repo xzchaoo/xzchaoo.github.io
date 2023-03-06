@@ -1,0 +1,14 @@
+[book]
+title = "Holoinsight Documentations"
+authors = ["xzchaoo", "foo", "bar"]
+language = "en"
+src = "src"
+multilingual = true
+
+[build]
+create-missing = false
+
+[[output.i18n.translations]]
+language = "zh"
+translators = ["xzc"]
+title = "zh"
